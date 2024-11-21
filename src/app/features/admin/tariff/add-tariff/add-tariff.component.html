@@ -1,0 +1,53 @@
+<div class="container">
+
+    <div class="d-flex justify-content-start mt-5">
+        <h3>Add tariff</h3>
+    </div>
+   
+    <form class="mt-3" #form="ngForm" (ngSubmit)="onFormSubmit()">
+
+        <ng-container *ngIf="tariffStatuses$ | async as tariffStatuses">
+            <div class="mt-3">
+                <select class="form-select" id="tariff-status" name="tariff-status" [(ngModel)]="tariffRequest.internetTariffStatusId" required>
+                    <option selected value="-1">Select a tariff status</option>
+                    <option *ngFor="let tariffStatus of tariffStatuses" value="{{tariffStatus.id}}">{{tariffStatus.name}}</option>
+                </select>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="locationTypes$ | async as locationTypes">
+            <div class="mt-3">
+                <select class="form-select" id="location-type" name="location-type" [(ngModel)]="tariffRequest.locationTypeId" required>
+                    <option selected value="-1">Select a location type</option>
+                    <option *ngFor="let locationType of locationTypes" value="{{locationType.id}}">{{locationType.name}}</option>
+                </select>
+            </div>
+        </ng-container>
+        
+        <div class="form-floating mt-3">
+            <input type="text" class="form-control" id="tariff-name" name="tariff-name" placeholder="Tariff name" [(ngModel)]="tariffRequest.name" required>
+            <label for="tariff-name">Name</label>
+        </div>
+
+        <div class="form-floating mt-3">
+            <input type="number" class="form-control" id="tariff-price" name="tariff-price" placeholder="Tariff price" [(ngModel)]="tariffRequest.price" required>
+            <label for="tariff-price">Price</label>
+        </div>
+
+        <div class="form-floating mt-3">
+            <input type="number" class="form-control" id="tariff-speed" name="tariff-speed" placeholder="Tariff speed" [(ngModel)]="tariffRequest.internetSpeedMbits" required>
+            <label for="tariff-speed">Speed, mbits</label>
+        </div>
+
+        <div class="form-floating mt-3">
+            <input type="text" class="form-control" id="tariff-description" name="tariff-description" placeholder="Tariff description" [(ngModel)]="tariffRequest.description" required>
+            <label for="tariff-description">Description</label>
+        </div>
+
+        <div class="d-flex justify-content-end mt-3">
+            <button type="submit" class="btn btn-success me-2">Add</button>
+            <a class="btn btn-danger" [routerLink]="['/admin/tariffs']" role="button">Cancel</a>
+        </div>
+    </form>
+    
+</div>

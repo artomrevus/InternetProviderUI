@@ -1,0 +1,46 @@
+<div class="container">
+
+    <div class="d-flex justify-content-start mt-5">
+        <h3>Tariff list</h3>
+    </div>
+
+    <div class="d-flex justify-content-end mt-3">
+        <a class="btn btn-outline-success" [routerLink]="['/admin/tariff/add']" role="button">Add tariff</a>
+    </div>
+
+    <ng-container *ngIf="tariffs$ | async as tariffs">
+        <table class="table table-striped mt-5 text-center">
+            <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Internet speed</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Location type</th>
+                  <th scope="col">Description</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tariff of tariffs">
+                    <td>{{tariff.id}}</td>
+                    <td>{{tariff.name}}</td>
+                    <td>{{tariff.price}}</td>
+                    <td>{{tariff.internetSpeedMbits}}</td>
+                    <td>{{tariff.internetTariffStatusName}}</td>
+                    <td>{{tariff.locationTypeName}}</td>
+                    <td><div class="ellipsis-cell">{{tariff.description}}</div></td>
+                    <td>
+                        <a class="btn btn-outline-dark" [routerLink]="['/admin/tariff', tariff.id]" role="button">Edit</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-danger" role="button" (click)="onDelete(tariff.id)">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-container>
+
+</div>

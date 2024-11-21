@@ -1,0 +1,50 @@
+.filter-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 350px; 
+    height: 100%; 
+    background-color: white;
+    box-shadow: 5px 0 10px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease-in-out; 
+    padding: 20px;
+    z-index: 1000; 
+    overflow-y: auto;
+}
+  
+h5 {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+  
+label {
+    font-size: 0.9rem;
+}
+  
+button {
+    width: 100%;
+}
+  
+.form-control::placeholder {
+    font-size: 15px; 
+    color: #6c757d;
+}
+
+.page-link {
+    color: black;
+}
+
+.pagination .active .page-link {
+    background-color: black !important;
+    border-color: black !important;
+    color: white !important;
+}
+
+.pagination .active .page-link:hover {
+    background-color: gray !important;
+    border-color: #1e7e34 !important;
+}
+
+table thead tr th {
+    white-space: nowrap;
+}

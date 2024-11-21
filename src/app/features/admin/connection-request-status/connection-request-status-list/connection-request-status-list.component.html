@@ -1,0 +1,36 @@
+<div class="container">
+
+    <div class="d-flex justify-content-start mt-5">
+        <h3>Connection request status list</h3>
+    </div>
+
+    <div class="d-flex justify-content-end mt-3">
+        <a class="btn btn-outline-success" [routerLink]="['/admin/connection-request-status/add']" role="button">Add connection request status</a>
+    </div>
+
+    <ng-container *ngIf="connectionRequestStatuses$ | async as connectionRequestStatuses">
+        <table class="table table-striped mt-5 text-center">
+            <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Name</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let connectionRequestStatus of connectionRequestStatuses">
+                    <td>{{connectionRequestStatus.id}}</td>
+                    <td>{{connectionRequestStatus.name}}</td>
+                    <td>
+                        <a class="btn btn-outline-dark" [routerLink]="['/admin/connection-request-status', connectionRequestStatus.id]" role="button">Edit</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-danger" role="button" (click)="onDelete(connectionRequestStatus.id)">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-container>
+
+</div>

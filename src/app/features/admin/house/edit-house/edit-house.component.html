@@ -1,0 +1,41 @@
+<div class="container">
+
+    <div class="d-flex justify-content-start mt-5">
+        <h3>Edit house</h3>
+    </div>
+
+    <ng-container *ngIf="houseResponse; else notFound">
+        <form class="mt-3" #form="ngForm" (ngSubmit)="onFormSubmit()">
+            <div class="form-floating mt-3">
+                <input type="text" disabled class="form-control" id="house-id" name="house-id" placeholder="id" [(ngModel)]="id">
+                <label for="house-id">House id</label>
+            </div>
+
+            <ng-container *ngIf="streets$ | async as streets">
+                <div class="mt-3">
+                    <select class="form-select" id="house-street-id" name="house-street-id" [(ngModel)]="houseRequest.streetId" required>
+                        <option selected value="-1">Select a street</option>
+                        <option *ngFor="let street of streets" value="{{street.id}}">{{street.streetName + ', ' + street.cityName}}</option>
+                    </select>
+                </div>
+            </ng-container>
+    
+            <div class="form-floating mt-3">
+                <input type="text" class="form-control" id="house-number" name="house-number" placeholder="name" [(ngModel)]="houseRequest.houseNumber">
+                <label for="house-number">House number</label>
+            </div>
+    
+            <div class="d-flex justify-content-end mt-3">
+                <button type="submit" class="btn btn-success me-2">Edit</button>
+                <a class="btn btn-danger" [routerLink]="['/admin/houses']" role="button">Cancel</a>
+            </div>
+        </form>
+    </ng-container>
+   
+    <ng-template #notFound>
+        <div class="alert alert-warning" role="alert">
+            House not found!
+        </div>
+    </ng-template>
+    
+</div>

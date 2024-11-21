@@ -1,0 +1,36 @@
+<div class="container">
+
+    <div class="d-flex justify-content-start mt-5">
+        <h3>Location type list</h3>
+    </div>
+
+    <div class="d-flex justify-content-end mt-3">
+        <a class="btn btn-outline-success" [routerLink]="['/admin/location-type/add']" role="button">Add location type</a>
+    </div>
+
+    <ng-container *ngIf="locationTypes$ | async as locationTypes">
+        <table class="table table-striped mt-5 text-center">
+            <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Name</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let locationType of locationTypes">
+                    <td>{{locationType.id}}</td>
+                    <td>{{locationType.name}}</td>
+                    <td>
+                        <a class="btn btn-outline-dark" [routerLink]="['/admin/location-type', locationType.id]" role="button">Edit</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-danger" role="button" (click)="onDelete(locationType.id)">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-container>
+
+</div>

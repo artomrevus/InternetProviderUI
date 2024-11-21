@@ -1,0 +1,40 @@
+<div class="container">
+
+    <div class="d-flex justify-content-start mt-5">
+        <h3>House list</h3>
+    </div>
+
+    <div class="d-flex justify-content-end mt-3">
+        <a class="btn btn-outline-success" [routerLink]="['/admin/house/add']" role="button">Add house</a>
+    </div>
+
+    <ng-container *ngIf="houses$ | async as houses">
+        <table class="table table-striped mt-5 text-center">
+            <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">City</th>
+                  <th scope="col">Street</th>
+                  <th scope="col">House</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let house of houses">
+                    <td>{{house.id}}</td>
+                    <td>{{house.cityName}}</td>
+                    <td>{{house.streetName}}</td>
+                    <td>{{house.houseNumber}}</td>
+                    <td>
+                        <a class="btn btn-outline-dark" [routerLink]="['/admin/house', house.id]" role="button">Edit</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-danger" role="button" (click)="onDelete(house.id)">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-container>
+
+</div>

@@ -1,0 +1,229 @@
+<div class="container">
+
+    <div class="d-flex justify-content-start mt-5">
+        <h3>Client list</h3>
+    </div>
+
+    <div class="d-flex justify-content-end mt-3 gap-3">
+        <a class="btn btn-outline-primary" role="button" (click)="toggleFilterPanel()">Filter / Sort</a>
+    </div>
+
+    <div *ngIf="isFilterPanelVisible" class="filter-panel">
+
+        <h5 class="mb-4">Filter</h5>
+        <div class="mb-3">
+            <label for="client-status-filter" class="mb-2">Client status:</label>
+            <input id="client-status-filter" type="text" class="form-control" [(ngModel)]="filter['clientStatusName']" (ngModelChange)="onFilterChange('clientStatusName')">
+        </div>
+        <div class="mb-3">
+            <label for="location-type-filter" class="mb-2">Location type:</label>
+            <input id="location-type-filter" type="text" class="form-control" [(ngModel)]="filter['locationTypeName']" (ngModelChange)="onFilterChange('locationTypeName')">
+        </div>
+        <div class="mb-3">
+            <label for="city-filter" class="mb-2">City:</label>
+            <input id="city-filter" type="text" class="form-control" [(ngModel)]="filter['cityName']" (ngModelChange)="onFilterChange('cityName')">
+        </div>
+        <div class="mb-3">
+            <label for="street-filter" class="mb-2">Street:</label>
+            <input id="street-filter" type="text" class="form-control" [(ngModel)]="filter['streetName']" (ngModelChange)="onFilterChange('streetName')">
+        </div>
+        <div class="mb-3">
+            <label for="house-filter" class="mb-2">House:</label>
+            <input id="house-filter" type="text" class="form-control" [(ngModel)]="filter['houseNumber']" (ngModelChange)="onFilterChange('houseNumber')">
+        </div>
+        <div class="mb-3">
+            <label for="first-name-filter" class="mb-2">First name:</label>
+            <input id="first-name-filter" type="text" class="form-control" [(ngModel)]="filter['firstName']" (ngModelChange)="onFilterChange('firstName')">
+        </div>
+        <div class="mb-3">
+            <label for="last-name-filter" class="mb-2">Last name:</label>
+            <input id="last-name-filter" type="text" class="form-control" [(ngModel)]="filter['lastName']" (ngModelChange)="onFilterChange('lastName')">
+        </div>
+        <div class="mb-3">
+            <label for="phone-number-filter" class="mb-2">Phone number:</label>
+            <input id="phone-number-filter" type="text" class="form-control" [(ngModel)]="filter['phoneNumber']" (ngModelChange)="onFilterChange('phoneNumber')">
+        </div>
+        <div class="mb-3">
+            <label for="email-filter" class="mb-2">Email:</label>
+            <input id="email-filter" type="text" class="form-control" [(ngModel)]="filter['email']" (ngModelChange)="onFilterChange('email')">
+        </div>
+        <div class="mb-3 row">
+            <label for="apartment" class="mb-2 col-12">Apartment number:</label>
+            <div class="d-flex col-12 gap-2">
+                <div class="col-6">
+                    <input id="apartment-min-filter" type="number" class="form-control" placeholder="Enter min" [(ngModel)]="filter['apartmentNumberMin']" (ngModelChange)="onFilterChange('apartmentNumberMin')">
+                </div>
+                <div class="col-6">
+                    <input id="apartment-max-filter" type="number" class="form-control" placeholder="Enter max" [(ngModel)]="filter['apartmentNumberMax']" (ngModelChange)="onFilterChange('apartmentNumberMax')">
+                </div>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="apartment" class="mb-2 col-12">Registration date:</label>
+            <div class="d-flex col-12 gap-2">
+                <div class="col-6">
+                    <input id="registration-date-min-filter" type="date" class="form-control" [(ngModel)]="filter['registrationDateMin']" (ngModelChange)="onFilterChange('registrationDateMin')">
+                </div>
+                <div class="col-6">
+                    <input id="registration-date-max-filter" type="date" class="form-control" [(ngModel)]="filter['registrationDateMax']" (ngModelChange)="onFilterChange('registrationDateMax')">
+                </div>
+            </div>
+        </div>
+        
+        
+        <h5 class="mb-4 mt-4">Sort</h5>
+        <div class="mb-3">
+            <label for="client-status-sort" class="mb-2">Client status:</label>
+            <select id="client-status-sort" class="form-control" [(ngModel)]="sort['clientStatusName']" (ngModelChange)="onSortChange('clientStatusName')">
+              <option value="undefined">Select</option>
+              <option value="0">Ascending</option>
+              <option value="1">Descending</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="location-type-sort" class="mb-2">Location type:</label>
+            <select id="location-type-sort" class="form-control" [(ngModel)]="sort['locationTypeName']" (ngModelChange)="onSortChange('locationTypeName')">
+              <option value="undefined">Select</option>
+              <option value="0">Ascending</option>
+              <option value="1">Descending</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="city-sort" class="mb-2">City:</label>
+            <select id="city-sort" class="form-control" [(ngModel)]="sort['cityName']" (ngModelChange)="onSortChange('cityName')">
+              <option value="undefined">Select</option>
+              <option value="0">Ascending</option>
+              <option value="1">Descending</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="street-sort" class="mb-2">Street:</label>
+            <select id="street-sort" class="form-control" [(ngModel)]="sort['streetName']" (ngModelChange)="onSortChange('streetName')">
+              <option value="undefined">Select</option>
+              <option value="0">Ascending</option>
+              <option value="1">Descending</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="house-sort" class="mb-2">House:</label>
+            <select id="house-sort" class="form-control" [(ngModel)]="sort['houseNumber']" (ngModelChange)="onSortChange('houseNumber')">
+                <option value="undefined">Select</option>
+                <option value="0">Ascending</option>
+                <option value="1">Descending</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="first-name-sort" class="mb-2">First name:</label>
+            <select id="first-name-sort" class="form-control" [(ngModel)]="sort['firstName']" (ngModelChange)="onSortChange('firstName')">
+                <option value="undefined">Select</option>
+                <option value="0">Ascending</option>
+                <option value="1">Descending</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="last-name-sort" class="mb-2">Last name:</label>
+            <select id="last-name-sort" class="form-control" [(ngModel)]="sort['lastName']" (ngModelChange)="onSortChange('lastName')">
+                <option value="undefined">Select</option>
+                <option value="0">Ascending</option>
+                <option value="1">Descending</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="phone-number-sort" class="mb-2">Phone number:</label>
+            <select id="phone-number-sort" class="form-control" [(ngModel)]="sort['phoneNumber']" (ngModelChange)="onSortChange('phoneNumber')">
+                <option value="undefined">Select</option>
+                <option value="0">Ascending</option>
+                <option value="1">Descending</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="email-sort" class="mb-2">Email:</label>
+            <select id="email-sort" class="form-control" [(ngModel)]="sort['email']" (ngModelChange)="onSortChange('email')">
+                <option value="undefined">Select</option>
+                <option value="0">Ascending</option>
+                <option value="1">Descending</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="apartment-number-sort" class="mb-2">Apartment number:</label>
+            <select id="apartment-number-sort" class="form-control" [(ngModel)]="sort['apartmentNumber']" (ngModelChange)="onSortChange('apartmentNumber')">
+                <option value="undefined">Select</option>
+                <option value="0">Ascending</option>
+                <option value="1">Descending</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="registration-date-sort" class="mb-2">Registration date:</label>
+            <select id="registration-date-sort" class="form-control" [(ngModel)]="sort['registrationDate']" (ngModelChange)="onSortChange('registrationDate')">
+                <option value="undefined">Select</option>
+                <option value="0">Ascending</option>
+                <option value="1">Descending</option>
+            </select>
+        </div>
+      
+        <button class="btn btn-primary mt-3" (click)="onApply()">Apply</button>
+    </div>
+      
+    
+    <ng-container *ngIf="clients$ | async as clients">
+
+        <div class="table-responsive">
+        <table class="table table-striped table-hover mt-5 text-center">
+            <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Location type</th>
+                  <th scope="col">City</th>
+                  <th scope="col">Street</th>
+                  <th scope="col">House</th>
+                  <th scope="col">Apartment</th>
+                  <th scope="col">First name</th>
+                  <th scope="col">Last name</th>
+                  <th scope="col">Phone</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Registration</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let client of clients">
+                    <td>{{client.id}}</td>
+                    <td>{{client.clientStatusName}}</td>
+                    <td>{{client.locationTypeName}}</td>
+                    <td>{{client.cityName}}</td>
+                    <td>{{client.streetName}}</td>
+                    <td>{{client.houseNumber}}</td>
+                    <td>{{client.apartmentNumber == null ? "-" : client.apartmentNumber}}</td>
+                    <td>{{client.firstName}}</td>
+                    <td>{{client.lastName}}</td>
+                    <td>{{client.phoneNumber}}</td>
+                    <td>{{client.email}}</td>
+                    <td>{{client.registrationDate}}</td>
+                    <td>
+                        <a class="btn btn-outline-dark" [routerLink]="['/admin/client', client.id]" role="button">Edit</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-danger" role="button" (click)="onDelete(client.id)">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-end mt-5">
+              <li class="page-item"><a class="page-link" (click)="getPrevPage()">Previous</a></li>
+
+              <li *ngFor="let p of [].constructor(pagesCount); let index = index" [class.active]="index + 1 === currentPageNumber" class="page-item">
+                <a class="page-link" (click)="getPage(index + 1)">{{index + 1}}</a>
+              </li>
+
+              <li class="page-item"><a class="page-link" (click)="getNextPage()">Next</a></li>
+            </ul>
+        </nav>
+
+    </ng-container>
+
+</div>
