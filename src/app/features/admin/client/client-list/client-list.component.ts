@@ -15,8 +15,8 @@ export class ClientListComponent implements OnInit, OnDestroy {
   clients$?: Observable<ClientResponse[]>;
 
   // Subscriptions
-  private deleteClientSubscribtion?: Subscription
-  private clientsCountSubscribtion?: Subscription
+  private deleteSubscribtion?: Subscription
+  private countSubscribtion?: Subscription
 
   // Filters and sort
   isFilterPanelVisible: boolean = false;
@@ -32,7 +32,7 @@ export class ClientListComponent implements OnInit, OnDestroy {
   constructor (private clientService: ClientService) {}
 
   ngOnInit(): void {
-    this.clientsCountSubscribtion = this.clientService.getClientsCount(this.filter).subscribe({
+    this.countSubscribtion = this.clientService.getClientsCount(this.filter).subscribe({
       next: (value) => {
         this.clientsCount = value;
         this.pagesCount = Math.ceil(value / this.pageSize);
@@ -45,7 +45,7 @@ export class ClientListComponent implements OnInit, OnDestroy {
   }
 
   onDelete(id: number): void {
-    this.deleteClientSubscribtion = this.clientService.deleteClientByID(id).subscribe({
+    this.deleteSubscribtion = this.clientService.deleteClientByID(id).subscribe({
       next: (response) => {
         this.ngOnInit();
       },
@@ -56,9 +56,9 @@ export class ClientListComponent implements OnInit, OnDestroy {
   }
 
   onApply() : void {
-    this.clientsCountSubscribtion?.unsubscribe();
+    this.countSubscribtion?.unsubscribe();
 
-    this.clientsCountSubscribtion = this.clientService.getClientsCount(this.filter).subscribe({
+    this.countSubscribtion = this.clientService.getClientsCount(this.filter).subscribe({
       next: (value) => {
         this.clientsCount = value;
         this.pagesCount = Math.ceil(value / this.pageSize);
@@ -132,7 +132,7 @@ export class ClientListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.deleteClientSubscribtion?.unsubscribe();
-    this.clientsCountSubscribtion?.unsubscribe();
+    this.deleteSubscribtion?.unsubscribe();
+    this.countSubscribtion?.unsubscribe();
   }
 }

@@ -12,7 +12,7 @@ import { TariffStatusService } from '../services/tariff-status.service';
 export class AddTariffStatusComponent implements OnDestroy {
 
   tariffStatusRequest: TariffStatusRequest;
-  private addTariffStatusSubscribtion?: Subscription 
+  private addSubscribtion?: Subscription 
 
   constructor (private tariffStatusService: TariffStatusService, private router: Router) {
     this.tariffStatusRequest = {
@@ -26,7 +26,7 @@ export class AddTariffStatusComponent implements OnDestroy {
       return;
     }
 
-    this.addTariffStatusSubscribtion = this.tariffStatusService.addTariffStatus(this.tariffStatusRequest).subscribe({
+    this.addSubscribtion = this.tariffStatusService.addTariffStatus(this.tariffStatusRequest).subscribe({
       next: (response) => {
         this.router.navigateByUrl('admin/tariff-statuses');
       },
@@ -37,6 +37,6 @@ export class AddTariffStatusComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.addTariffStatusSubscribtion?.unsubscribe();
+    this.addSubscribtion?.unsubscribe();
   }
 }

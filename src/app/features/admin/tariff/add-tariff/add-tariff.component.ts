@@ -20,7 +20,7 @@ export class AddTariffComponent implements OnInit, OnDestroy {
   tariffRequest: TariffRequest;
   tariffStatuses$?: Observable<TariffStatusResponse[]>;
   locationTypes$?: Observable<LocationTypeResponse[]>;
-  private addTariffSubscribtion?: Subscription 
+  private addSubscribtion?: Subscription 
 
   constructor (
     private tariffService: TariffService,
@@ -74,7 +74,7 @@ export class AddTariffComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.addTariffSubscribtion = this.tariffService.addTariff(this.tariffRequest).subscribe({
+    this.addSubscribtion = this.tariffService.addTariff(this.tariffRequest).subscribe({
       next: (response) => {
         this.router.navigateByUrl('admin/tariffs');
       },
@@ -85,6 +85,6 @@ export class AddTariffComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.addTariffSubscribtion?.unsubscribe();
+    this.addSubscribtion?.unsubscribe();
   }
 }

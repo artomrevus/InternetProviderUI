@@ -1,12 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { AdminLoginRequest } from '../models/admin-login-request.model';
 import { environment } from 'src/environments/environment.development';
 import { AdminLoginResponse } from '../models/admin-login-response.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { jwtDecode } from 'jwt-decode';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'

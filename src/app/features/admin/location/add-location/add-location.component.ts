@@ -19,7 +19,7 @@ export class AddLocationComponent implements OnInit, OnDestroy {
   locationTypes$?: Observable<LocationTypeResponse[]>;
   houses$?: Observable<HouseResponse[]>;
 
-  private addLocationSubscribtion?: Subscription 
+  private addSubscribtion?: Subscription 
 
   constructor (
     private locationService: LocationService, 
@@ -56,7 +56,7 @@ export class AddLocationComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.addLocationSubscribtion = this.locationService.addLocation(this.locationRequest).subscribe({
+    this.addSubscribtion = this.locationService.addLocation(this.locationRequest).subscribe({
       next: (response) => {
         this.router.navigateByUrl('admin/locations');
       },
@@ -67,6 +67,6 @@ export class AddLocationComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.addLocationSubscribtion?.unsubscribe();
+    this.addSubscribtion?.unsubscribe();
   }
 }

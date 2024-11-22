@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class AddClientStatusComponent implements OnDestroy {
 
   clientStatus: ClientStatusRequest;
-  private addClientStatusSubscribtion?: Subscription 
+  private updateSubscribtion?: Subscription 
 
   constructor (private clientStatusService: ClientStatusService, private router: Router) {
     this.clientStatus = {
@@ -26,7 +26,7 @@ export class AddClientStatusComponent implements OnDestroy {
       return;
     }
 
-    this.addClientStatusSubscribtion = this.clientStatusService.addClientStatus(this.clientStatus).subscribe({
+    this.updateSubscribtion = this.clientStatusService.addClientStatus(this.clientStatus).subscribe({
       next: (response) => {
         this.router.navigateByUrl('admin/client-statuses');
       },
@@ -37,6 +37,6 @@ export class AddClientStatusComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.addClientStatusSubscribtion?.unsubscribe();
+    this.updateSubscribtion?.unsubscribe();
   }
 }

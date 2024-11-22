@@ -15,8 +15,8 @@ export class LocationListComponent implements OnInit, OnDestroy {
   locations$?: Observable<LocationResponse[]>;
 
   // Subscriptions
-  private deleteLocationSubscribtion?: Subscription
-  private locationsCountSubscribtion?: Subscription
+  private deleteSubscribtion?: Subscription
+  private countSubscribtion?: Subscription
 
   // Filters and sort
   isFilterPanelVisible: boolean = false;
@@ -32,7 +32,7 @@ export class LocationListComponent implements OnInit, OnDestroy {
   constructor (private locationService: LocationService) {}
 
   ngOnInit(): void {
-    this.locationsCountSubscribtion = this.locationService.getLocationsCount(this.filter).subscribe({
+    this.countSubscribtion = this.locationService.getLocationsCount(this.filter).subscribe({
       next: (value) => {
         this.locationsCount = value;
         this.pagesCount = Math.ceil(value / this.pageSize);
@@ -45,7 +45,7 @@ export class LocationListComponent implements OnInit, OnDestroy {
   }
 
   onDelete(id: number): void {
-    this.deleteLocationSubscribtion = this.locationService.deleteLocationByID(id).subscribe({
+    this.deleteSubscribtion = this.locationService.deleteLocationByID(id).subscribe({
       next: (response) => {
         this.ngOnInit();
       },
@@ -57,8 +57,8 @@ export class LocationListComponent implements OnInit, OnDestroy {
 
   onApply() : void {
 
-    this.locationsCountSubscribtion?.unsubscribe();
-    this.locationsCountSubscribtion = this.locationService.getLocationsCount(this.filter).subscribe({
+    this.countSubscribtion?.unsubscribe();
+    this.countSubscribtion = this.locationService.getLocationsCount(this.filter).subscribe({
       next: (value) => {
         this.locationsCount = value;
         this.pagesCount = Math.ceil(value / this.pageSize);
@@ -132,7 +132,7 @@ export class LocationListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.deleteLocationSubscribtion?.unsubscribe();
-    this.locationsCountSubscribtion?.unsubscribe();
+    this.deleteSubscribtion?.unsubscribe();
+    this.countSubscribtion?.unsubscribe();
   }
 }

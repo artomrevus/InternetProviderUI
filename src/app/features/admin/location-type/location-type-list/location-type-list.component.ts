@@ -11,7 +11,7 @@ import { LocationTypeResponse } from '../models/location-type-response.model';
 export class LocationTypeListComponent implements OnInit, OnDestroy {
 
   locationTypes$?: Observable<LocationTypeResponse[]>;
-  private deleteLocationTypeSubscribtion?: Subscription 
+  private deleteSubscribtion?: Subscription 
 
   constructor (private locationTypeService: LocationTypeService) {
   }
@@ -21,7 +21,7 @@ export class LocationTypeListComponent implements OnInit, OnDestroy {
   }
 
   onDelete(id: number): void {
-    this.deleteLocationTypeSubscribtion = this.locationTypeService.deleteLocationTypeByID(id).subscribe({
+    this.deleteSubscribtion = this.locationTypeService.deleteLocationTypeByID(id).subscribe({
       next: (response) => {
         this.ngOnInit();
       },
@@ -32,6 +32,6 @@ export class LocationTypeListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.deleteLocationTypeSubscribtion?.unsubscribe();
+    this.deleteSubscribtion?.unsubscribe();
   }
 }

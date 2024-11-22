@@ -11,7 +11,7 @@ import { HouseService } from '../services/house.service';
 export class HouseListComponent implements OnInit, OnDestroy {
 
   houses$?: Observable<HouseResponse[]>;
-  private deleteHouseSubscribtion?: Subscription 
+  private deleteSubscribtion?: Subscription 
 
   constructor (private houseService: HouseService) {
   }
@@ -21,7 +21,7 @@ export class HouseListComponent implements OnInit, OnDestroy {
   }
 
   onDelete(id: number): void {
-    this.deleteHouseSubscribtion = this.houseService.deleteHouseByID(id).subscribe({
+    this.deleteSubscribtion = this.houseService.deleteHouseByID(id).subscribe({
       next: (response) => {
         this.ngOnInit();
       },
@@ -32,6 +32,6 @@ export class HouseListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.deleteHouseSubscribtion?.unsubscribe();
+    this.deleteSubscribtion?.unsubscribe();
   }
 }

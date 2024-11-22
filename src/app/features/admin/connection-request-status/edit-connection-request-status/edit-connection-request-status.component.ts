@@ -16,7 +16,7 @@ export class EditConnectionRequestStatusComponent implements OnInit, OnDestroy {
   connectionRequestStatusResponse?: ConnectionRequestStatusResponse 
   connectionRequestStatusRequest: ConnectionRequestStatusRequest 
   private paramsSubscribtion?: Subscription 
-  private updateConnectionRequestStatusSubscribtion?: Subscription 
+  private updateSubscribtion?: Subscription 
 
   constructor (private route: ActivatedRoute, private connectionRequestStatusService: ConnectionRequestStatusService, private router: Router) {
     this.connectionRequestStatusRequest = {
@@ -59,7 +59,7 @@ export class EditConnectionRequestStatusComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.updateConnectionRequestStatusSubscribtion = this.connectionRequestStatusService.updateConnectionRequestStatus(this.id, this.connectionRequestStatusRequest).subscribe({
+    this.updateSubscribtion = this.connectionRequestStatusService.updateConnectionRequestStatus(this.id, this.connectionRequestStatusRequest).subscribe({
       next: (response) => {
         this.router.navigateByUrl('admin/connection-request-statuses');
       },
@@ -71,6 +71,6 @@ export class EditConnectionRequestStatusComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.paramsSubscribtion?.unsubscribe();
-    this.updateConnectionRequestStatusSubscribtion?.unsubscribe();
+    this.updateSubscribtion?.unsubscribe();
   }
 }

@@ -16,10 +16,10 @@ import { ClientStatusService } from '../../client-status/services/client-status.
 })
 export class EditClientComponent implements OnInit, OnDestroy {
 
-  // Location / route id 
+  // Client / route id 
   id: number | null = null;
 
-  // Location edit 
+  // Client edit 
   clientResponse?: ClientResponse 
   clientRequest: ClientRequest 
   clientStatuses$?: Observable<ClientStatusResponse[]>;
@@ -27,7 +27,7 @@ export class EditClientComponent implements OnInit, OnDestroy {
 
   // Subscriptions
   private paramsSubscribtion?: Subscription 
-  private updateClientSubscribtion?: Subscription 
+  private updateSubscribtion?: Subscription 
 
   constructor (
     private route: ActivatedRoute,
@@ -35,7 +35,6 @@ export class EditClientComponent implements OnInit, OnDestroy {
     private clientStatusService: ClientStatusService,
     private locationService: LocationService,
     private router: Router
-      
     ) {
     this.clientRequest = {
       clientStatusId: -1,
@@ -113,7 +112,7 @@ export class EditClientComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.updateClientSubscribtion = this.clientService.updateClient(this.id, this.clientRequest).subscribe({
+    this.updateSubscribtion = this.clientService.updateClient(this.id, this.clientRequest).subscribe({
       next: (response) => {
         this.router.navigateByUrl('admin/clients');
       },
@@ -125,6 +124,6 @@ export class EditClientComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.paramsSubscribtion?.unsubscribe();
-    this.updateClientSubscribtion?.unsubscribe();
+    this.updateSubscribtion?.unsubscribe();
   }
 }

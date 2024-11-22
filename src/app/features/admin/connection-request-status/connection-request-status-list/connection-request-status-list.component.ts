@@ -11,7 +11,7 @@ import { ConnectionRequestStatusResponse } from '../models/connection-request-st
 export class ConnectionRequestStatusListComponent implements OnInit, OnDestroy {
 
   connectionRequestStatuses$?: Observable<ConnectionRequestStatusResponse[]>;
-  private deleteConnectionRequestStatusSubscribtion?: Subscription 
+  private deleteSubscribtion?: Subscription 
 
   constructor (private connectionRequestStatusService: ConnectionRequestStatusService) {
   }
@@ -21,7 +21,7 @@ export class ConnectionRequestStatusListComponent implements OnInit, OnDestroy {
   }
 
   onDelete(id: number): void {
-    this.deleteConnectionRequestStatusSubscribtion = this.connectionRequestStatusService.deleteConnectionRequestStatusByID(id).subscribe({
+    this.deleteSubscribtion = this.connectionRequestStatusService.deleteConnectionRequestStatusByID(id).subscribe({
       next: (response) => {
         this.ngOnInit();
       },
@@ -32,6 +32,6 @@ export class ConnectionRequestStatusListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.deleteConnectionRequestStatusSubscribtion?.unsubscribe();
+    this.deleteSubscribtion?.unsubscribe();
   }
 }

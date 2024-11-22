@@ -19,7 +19,7 @@ export class EditHouseComponent implements OnInit, OnDestroy {
   houseRequest: HouseRequest 
   streets$?: Observable<StreetResponse[]>;
   private paramsSubscribtion?: Subscription 
-  private updateHouseSubscribtion?: Subscription 
+  private updateSubscribtion?: Subscription 
 
   constructor (private route: ActivatedRoute, private houseService: HouseService, private streetService: StreetService, private router: Router) {
     this.houseRequest = {
@@ -70,7 +70,7 @@ export class EditHouseComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.updateHouseSubscribtion = this.houseService.updateHouse(this.id, this.houseRequest).subscribe({
+    this.updateSubscribtion = this.houseService.updateHouse(this.id, this.houseRequest).subscribe({
       next: (response) => {
         this.router.navigateByUrl('admin/houses');
       },
@@ -82,6 +82,6 @@ export class EditHouseComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.paramsSubscribtion?.unsubscribe();
-    this.updateHouseSubscribtion?.unsubscribe();
+    this.updateSubscribtion?.unsubscribe();
   }
 }

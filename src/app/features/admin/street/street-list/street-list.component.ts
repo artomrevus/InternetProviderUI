@@ -11,7 +11,7 @@ import { StreetResponse } from '../models/street-response.model';
 export class StreetListComponent implements OnInit, OnDestroy {
 
   streets$?: Observable<StreetResponse[]>;
-  private deleteStreetSubscribtion?: Subscription 
+  private deleteSubscribtion?: Subscription 
 
   constructor (private streetService: StreetService) {
   }
@@ -21,7 +21,7 @@ export class StreetListComponent implements OnInit, OnDestroy {
   }
 
   onDelete(id: number): void {
-    this.deleteStreetSubscribtion = this.streetService.deleteStreetByID(id).subscribe({
+    this.deleteSubscribtion = this.streetService.deleteStreetByID(id).subscribe({
       next: (response) => {
         this.ngOnInit();
       },
@@ -32,6 +32,6 @@ export class StreetListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.deleteStreetSubscribtion?.unsubscribe();
+    this.deleteSubscribtion?.unsubscribe();
   }
 }

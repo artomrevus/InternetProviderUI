@@ -14,7 +14,7 @@ export class EditLocationTypeComponent implements OnInit, OnDestroy {
   id: number | null = null;
   locationType?: LocationTypeResponse 
   private paramsSubscribtion?: Subscription 
-  private updateLocationTypeSubscribtion?: Subscription 
+  private updateSubscribtion?: Subscription 
 
   constructor (private route: ActivatedRoute, private locationTypeService: LocationTypeService, private router: Router) {
   }
@@ -53,7 +53,7 @@ export class EditLocationTypeComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.updateLocationTypeSubscribtion = this.locationTypeService.updateLocationType(this.id, {name: this.locationType.name}).subscribe({
+    this.updateSubscribtion = this.locationTypeService.updateLocationType(this.id, {name: this.locationType.name}).subscribe({
       next: (response) => {
         this.router.navigateByUrl('admin/location-types');
       },
@@ -65,6 +65,6 @@ export class EditLocationTypeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.paramsSubscribtion?.unsubscribe();
-    this.updateLocationTypeSubscribtion?.unsubscribe();
+    this.updateSubscribtion?.unsubscribe();
   }
 }

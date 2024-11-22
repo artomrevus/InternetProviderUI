@@ -11,7 +11,7 @@ import { TariffResponse } from '../models/tariff-response.model';
 export class TariffListComponent implements OnInit, OnDestroy {
 
   tariffs$?: Observable<TariffResponse[]>;
-  private deleteTariffSubscribtion?: Subscription 
+  private deleteSubscribtion?: Subscription 
 
   constructor (private tariffService: TariffService) {
   }
@@ -21,7 +21,7 @@ export class TariffListComponent implements OnInit, OnDestroy {
   }
 
   onDelete(id: number): void {
-    this.deleteTariffSubscribtion = this.tariffService.deleteTariffByID(id).subscribe({
+    this.deleteSubscribtion = this.tariffService.deleteTariffByID(id).subscribe({
       next: (response) => {
         this.ngOnInit();
       },
@@ -32,6 +32,6 @@ export class TariffListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.deleteTariffSubscribtion?.unsubscribe();
+    this.deleteSubscribtion?.unsubscribe();
   }
 }

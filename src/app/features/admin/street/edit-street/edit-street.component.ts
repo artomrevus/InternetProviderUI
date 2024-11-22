@@ -19,7 +19,7 @@ export class EditStreetComponent implements OnInit, OnDestroy {
   streetRequest: StreetRequest 
   cities$?: Observable<CityResponse[]>;
   private paramsSubscribtion?: Subscription 
-  private updateStreetSubscribtion?: Subscription 
+  private updateSubscribtion?: Subscription 
 
   constructor (private route: ActivatedRoute, private streetService: StreetService, private cityService: CityService, private router: Router) {
     this.streetRequest = {
@@ -70,7 +70,7 @@ export class EditStreetComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.updateStreetSubscribtion = this.streetService.updateStreet(this.id, this.streetRequest).subscribe({
+    this.updateSubscribtion = this.streetService.updateStreet(this.id, this.streetRequest).subscribe({
       next: (response) => {
         this.router.navigateByUrl('admin/streets');
       },
@@ -82,6 +82,6 @@ export class EditStreetComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.paramsSubscribtion?.unsubscribe();
-    this.updateStreetSubscribtion?.unsubscribe();
+    this.updateSubscribtion?.unsubscribe();
   }
 }

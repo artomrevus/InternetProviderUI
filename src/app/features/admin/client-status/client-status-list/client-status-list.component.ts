@@ -12,7 +12,7 @@ import { ClientStatusService } from '../services/client-status.service';
 export class ClientStatusListComponent implements OnInit, OnDestroy {
 
   clientStatuses$?: Observable<ClientStatusResponse[]>;
-  private deleteClientStatusSubscribtion?: Subscription 
+  private deleteSubscribtion?: Subscription 
 
   constructor (private clientStatusService: ClientStatusService) {
   }
@@ -22,7 +22,7 @@ export class ClientStatusListComponent implements OnInit, OnDestroy {
   }
 
   onDelete(id: number): void {
-    this.deleteClientStatusSubscribtion = this.clientStatusService.deleteClientStatusByID(id).subscribe({
+    this.deleteSubscribtion = this.clientStatusService.deleteClientStatusByID(id).subscribe({
       next: (response) => {
         this.ngOnInit();
       },
@@ -33,6 +33,6 @@ export class ClientStatusListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.deleteClientStatusSubscribtion?.unsubscribe();
+    this.deleteSubscribtion?.unsubscribe();
   }
 }

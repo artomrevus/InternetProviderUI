@@ -8,7 +8,7 @@
         <a class="btn btn-outline-success" [routerLink]="['/admin/city/add']" role="button">Add city</a>
     </div>
 
-    <ng-container *ngIf="cities$ | async as cities">
+    <ng-container *ngIf="citiesResponse$ | async as cities">
         <table class="table table-striped mt-5 text-center">
             <thead>
                 <tr>

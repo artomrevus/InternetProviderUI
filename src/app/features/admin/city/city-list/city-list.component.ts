@@ -10,18 +10,18 @@ import { CityResponse } from '../models/city-response.model';
 })
 export class CityListComponent implements OnInit, OnDestroy {
 
-  cities$?: Observable<CityResponse[]>;
-  private deleteCitySubscribtion?: Subscription 
+  citiesResponse$?: Observable<CityResponse[]>;
+  private deleteSubscribtion?: Subscription 
 
   constructor (private cityService: CityService) {
   }
 
   ngOnInit(): void {
-    this.cities$ = this.cityService.getAllCities();
+    this.citiesResponse$ = this.cityService.getAllCities();
   }
 
   onDelete(id: number): void {
-    this.deleteCitySubscribtion = this.cityService.deleteCityByID(id).subscribe({
+    this.deleteSubscribtion = this.cityService.deleteCityByID(id).subscribe({
       next: (response) => {
         this.ngOnInit();
       },
@@ -32,6 +32,6 @@ export class CityListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.deleteCitySubscribtion?.unsubscribe();
+    this.deleteSubscribtion?.unsubscribe();
   }
 }

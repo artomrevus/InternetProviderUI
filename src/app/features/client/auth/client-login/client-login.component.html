@@ -1,0 +1,15 @@
+<div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="card shadow-lg p-5" style="width: 30rem;">
+      <h3 class="text-center mb-4">Login as client</h3>
+      <form #form="ngForm" (ngSubmit)="onFormSubmit()">
+        <div class="mb-3">
+          <input type="text" class="form-control form-control-lg" id="login-name" name="login-name" placeholder="Username" aria-label="Username" required [(ngModel)]="clientLoginRequest.userName">
+        </div>
+        <div class="mb-3">
+          <input type="password" class="form-control form-control-lg" id="login-password" name="login-password" placeholder="Password" aria-label="Password" required [(ngModel)]="clientLoginRequest.password">
+        </div>
+        <button type="submit" class="btn btn-dark btn-lg w-100">Login</button>
+      </form>
+    </div>
+</div>
+

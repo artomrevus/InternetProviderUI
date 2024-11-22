@@ -35,6 +35,15 @@ import { TariffListComponent } from './features/admin/tariff/tariff-list/tariff-
 import { ConnectionRequestListComponent } from './features/admin/connection-request/connection-request-list/connection-request-list.component';
 import { AddConnectionRequestComponent } from './features/admin/connection-request/add-connection-request/add-connection-request.component';
 import { EditConnectionRequestComponent } from './features/admin/connection-request/edit-connection-request/edit-connection-request.component';
+import { ClientLoginComponent } from './features/client/auth/client-login/client-login.component';
+import { ClientAuthOptionsComponent } from './features/client/auth/client-auth-options/client-auth-options.component';
+import { ClientRegisterComponent } from './features/client/auth/client-register/client-register.component';
+import { clientAuthGuard } from './features/client/auth/guards/client-auth.guard';
+import { ProfileComponent } from './features/client/profile/profile.component';
+import { EditProfileComponent } from './features/client/edit-profile/edit-profile.component';
+import { ExploreTariffsComponent } from './features/client/explore-tariffs/explore-tariffs.component';
+import { ClientConnectionRequestsComponent } from './features/client/client-connection-requests/client-connection-requests.component';
+import { NewConnectionRequestComponent } from './features/client/new-connection-request/new-connection-request.component';
 
 const routes: Routes = [
   {
@@ -204,6 +213,43 @@ const routes: Routes = [
     path: "admin/connection-request/:id",
     component: EditConnectionRequestComponent,
     canActivate: [adminAuthGuard]
+  },
+  {
+    path: "client/auth-options",
+    component: ClientAuthOptionsComponent,
+  },
+  {
+    path: "client/login",
+    component: ClientLoginComponent,
+  },
+  {
+    path: "client/register",
+    component: ClientRegisterComponent,
+  },
+  {
+    path: "client/profile",
+    component: ProfileComponent,
+    canActivate: [clientAuthGuard]
+  },
+  {
+    path: "client/edit-profile",
+    component: EditProfileComponent,
+    canActivate: [clientAuthGuard]
+  },
+  {
+    path: "client/explore-tariffs",
+    component: ExploreTariffsComponent,
+    canActivate: [clientAuthGuard]
+  },
+  {
+    path: "client/connection-requests",
+    component: ClientConnectionRequestsComponent,
+    canActivate: [clientAuthGuard]
+  },
+  {
+    path: "client/connection-request/:id",
+    component: NewConnectionRequestComponent,
+    canActivate: [clientAuthGuard]
   },
 ];
 

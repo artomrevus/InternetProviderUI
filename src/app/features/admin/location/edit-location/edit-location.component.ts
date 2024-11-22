@@ -29,7 +29,7 @@ export class EditLocationComponent implements OnInit, OnDestroy {
 
   // Subscriptions
   private paramsSubscribtion?: Subscription 
-  private updateLocationSubscribtion?: Subscription 
+  private updateSubscribtion?: Subscription 
 
   constructor (
     private route: ActivatedRoute,
@@ -94,7 +94,7 @@ export class EditLocationComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.updateLocationSubscribtion = this.locationService.updateLocation(this.id, this.locationRequest).subscribe({
+    this.updateSubscribtion = this.locationService.updateLocation(this.id, this.locationRequest).subscribe({
       next: (response) => {
         this.router.navigateByUrl('admin/locations');
       },
@@ -106,6 +106,6 @@ export class EditLocationComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.paramsSubscribtion?.unsubscribe();
-    this.updateLocationSubscribtion?.unsubscribe();
+    this.updateSubscribtion?.unsubscribe();
   }
 }

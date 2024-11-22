@@ -12,7 +12,7 @@ import { ConnectionRequestStatusRequest } from '../models/connection-request-sta
 export class AddConnectionRequestStatusComponent implements OnDestroy {
 
   connectionRequestStatusRequest: ConnectionRequestStatusRequest;
-  private addConnectionRequestStatusSubscribtion?: Subscription 
+  private addSubscribtion?: Subscription 
 
   constructor (private connectionRequestStatusService: ConnectionRequestStatusService, private router: Router) {
     this.connectionRequestStatusRequest = {
@@ -26,7 +26,7 @@ export class AddConnectionRequestStatusComponent implements OnDestroy {
       return;
     }
 
-    this.addConnectionRequestStatusSubscribtion = this.connectionRequestStatusService.addConnectionRequestStatus(this.connectionRequestStatusRequest).subscribe({
+    this.addSubscribtion = this.connectionRequestStatusService.addConnectionRequestStatus(this.connectionRequestStatusRequest).subscribe({
       next: (response) => {
         this.router.navigateByUrl('admin/connection-request-statuses');
       },
@@ -37,6 +37,6 @@ export class AddConnectionRequestStatusComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.addConnectionRequestStatusSubscribtion?.unsubscribe();
+    this.addSubscribtion?.unsubscribe();
   }
 }

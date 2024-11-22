@@ -11,22 +11,22 @@ import { CityRequest } from '../models/city-request.model';
 })
 export class AddCityComponent implements OnDestroy {
 
-  city: CityRequest;
-  private addCitySubscribtion?: Subscription 
+  cityRequest: CityRequest;
+  private addSubscribtion?: Subscription 
 
   constructor (private cityService: CityService, private router: Router) {
-    this.city = {
+    this.cityRequest = {
       name: ""
     };
   }
 
   onFormSubmit(): void {
-    if (!this.city.name || this.city.name.trim() === '') {
+    if (!this.cityRequest.name || this.cityRequest.name.trim() === '') {
       alert('Name is not specified.');
       return;
     }
 
-    this.addCitySubscribtion = this.cityService.addCity(this.city).subscribe({
+    this.addSubscribtion = this.cityService.addCity(this.cityRequest).subscribe({
       next: (response) => {
         this.router.navigateByUrl('admin/cities');
       },
@@ -37,6 +37,6 @@ export class AddCityComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.addCitySubscribtion?.unsubscribe();
+    this.addSubscribtion?.unsubscribe();
   }
 }

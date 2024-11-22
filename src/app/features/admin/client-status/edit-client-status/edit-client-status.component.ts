@@ -15,7 +15,7 @@ export class EditClientStatusComponent implements OnInit, OnDestroy {
   id: number | null = null;
   clientStatus?: ClientStatusResponse 
   private paramsSubscribtion?: Subscription 
-  private updateClientStatusSubscribtion?: Subscription 
+  private updateSubscribtion?: Subscription 
 
   constructor (private route: ActivatedRoute, private clientStatusService: ClientStatusService, private router: Router) {
   }
@@ -54,7 +54,7 @@ export class EditClientStatusComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.updateClientStatusSubscribtion = this.clientStatusService.updateClientStatus(this.id, {name: this.clientStatus.name}).subscribe({
+    this.updateSubscribtion = this.clientStatusService.updateClientStatus(this.id, {name: this.clientStatus.name}).subscribe({
       next: (response) => {
         this.router.navigateByUrl('admin/client-statuses');
       },
@@ -66,6 +66,6 @@ export class EditClientStatusComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.paramsSubscribtion?.unsubscribe();
-    this.updateClientStatusSubscribtion?.unsubscribe();
+    this.updateSubscribtion?.unsubscribe();
   }
 }

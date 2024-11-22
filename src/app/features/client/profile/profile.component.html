@@ -1,0 +1,61 @@
+<div class="container mt-5">
+    <div class="card mx-auto" style="max-width: 600px;">
+      <div class="card-header bg-primary text-white text-center">
+        <h4 class="mt-3">Profile</h4>
+      </div>
+      <div class="card-body">
+        <div class="row mb-3">
+          <div class="col-4 fw-bold">ID:</div>
+          <div class="col-8">{{ clientResponse?.id }}</div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-4 fw-bold">Status:</div>
+          <div class="col-8">{{ clientResponse?.clientStatusName }}</div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-4 fw-bold">First Name:</div>
+            <div class="col-8">{{ clientResponse?.firstName }}</div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-4 fw-bold">Last Name:</div>
+            <div class="col-8">{{ clientResponse?.lastName }}</div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-4 fw-bold">Phone Number:</div>
+            <div class="col-8">{{ clientResponse?.phoneNumber }}</div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-4 fw-bold">Email:</div>
+            <div class="col-8">{{ clientResponse?.email }}</div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-4 fw-bold">Location Type:</div>
+          <div class="col-8">{{ clientResponse?.locationTypeName }}</div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-4 fw-bold">City:</div>
+          <div class="col-8">{{ clientResponse?.cityName }}</div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-4 fw-bold">Street:</div>
+          <div class="col-8">{{ clientResponse?.streetName }}</div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-4 fw-bold">House Number:</div>
+          <div class="col-8">{{ clientResponse?.houseNumber }}</div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-4 fw-bold">Apartment Number:</div>
+          <div class="col-8">{{ clientResponse?.apartmentNumber }}</div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-4 fw-bold">Registration Date:</div>
+          <div class="col-8">{{ clientResponse?.registrationDate | date }}</div>
+        </div>
+      </div>
+      <div class="card-footer text-center">
+        <button class="btn btn-secondary" [routerLink]="['/client/edit-profile']">Edit Profile</button>
+      </div>
+    </div>
+  </div>
+  

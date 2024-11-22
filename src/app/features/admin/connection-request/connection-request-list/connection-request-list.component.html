@@ -159,7 +159,7 @@
             <tbody>
                 <tr *ngFor="let connectionRequest of connectionRequests">
                     <td>{{connectionRequest.id}}</td>
-                    <td>{{connectionRequest.number}}</td>
+                    <td><div class="ellipsis-cell">{{connectionRequest.number}}</div></td>
                     <td>{{connectionRequest.internetConnectionRequestStatusName}}</td>
                     <td>{{connectionRequest.requestDate}}</td>
                     <td>{{connectionRequest.clientEmail}}</td>

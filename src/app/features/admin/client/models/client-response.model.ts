@@ -1,6 +1,8 @@
 export interface ClientResponse {
     id: number;
+    clientStatusId: number;
     clientStatusName: string;
+    locationId: number;
     locationTypeName: string;
     cityName: string;
     streetName: string;

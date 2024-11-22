@@ -1,0 +1,161 @@
+<div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="card shadow-lg p-5" style="width: 100%; max-width: 40rem;">
+      <h3 class="text-center mb-4">Register as Client</h3>
+      <form #form="ngForm" (ngSubmit)="onFormSubmit()">
+        <!-- Username -->
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input 
+            type="text" 
+            class="form-control form-control-lg" 
+            id="username" 
+            placeholder="Enter your username" 
+            required 
+            [(ngModel)]="clientRegisterRequest.userName" 
+            name="userName">
+        </div>
+  
+        <!-- Password -->
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input 
+            type="password" 
+            class="form-control form-control-lg" 
+            id="password" 
+            placeholder="Enter your password" 
+            required 
+            [(ngModel)]="clientRegisterRequest.password" 
+            name="password">
+        </div>
+  
+        <!-- First Name -->
+        <div class="mb-3">
+          <label for="firstName" class="form-label">First Name</label>
+          <input 
+            type="text" 
+            class="form-control form-control-lg" 
+            id="firstName" 
+            placeholder="Enter your first name" 
+            required 
+            [(ngModel)]="clientRegisterRequest.firstName" 
+            name="firstName">
+        </div>
+  
+        <!-- Last Name -->
+        <div class="mb-3">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input 
+            type="text" 
+            class="form-control form-control-lg" 
+            id="lastName" 
+            placeholder="Enter your last name" 
+            required 
+            [(ngModel)]="clientRegisterRequest.lastName" 
+            name="lastName">
+        </div>
+  
+        <!-- Phone Number -->
+        <div class="mb-3">
+          <label for="phoneNumber" class="form-label">Phone Number</label>
+          <input 
+            type="tel" 
+            class="form-control form-control-lg" 
+            id="phoneNumber" 
+            placeholder="Enter your phone number" 
+            required 
+            [(ngModel)]="clientRegisterRequest.phoneNumber" 
+            name="phoneNumber">
+        </div>
+  
+        <!-- Email -->
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input 
+            type="email" 
+            class="form-control form-control-lg" 
+            id="email" 
+            placeholder="Enter your email" 
+            required 
+            [(ngModel)]="clientRegisterRequest.email" 
+            name="email">
+        </div>
+
+        <div class="mb-1">
+            <label for="location" class="form-label">Location</label>
+        </div>
+
+        <div class="accordion mb-4" id="location-select-existing">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="location-select-existing-heading">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#location-select-existing-collapse" aria-expanded="true" aria-controls="collapseLocation">
+                        Select an existing
+                    </button>
+                </h2>
+                <div id="location-select-existing-collapse" class="accordion-collapse collapse" aria-labelledby="location-select-existing-heading" data-bs-parent="#location-select-existing">
+                    <div class="accordion-body">
+                        <ng-container *ngIf="cities$ | async as cities">
+                            <label for="location-city-id" class="form-label">City</label>
+                            <div class="mb-2">
+                                <select class="form-select form-select-lg" id="location-city-id" name="location-city-id" [(ngModel)]="cityId" (ngModelChange)="onCitySelectLocationChange()" required>
+                                    <option [ngValue]="-1" disabled></option>
+                                    <option *ngFor="let city of cities" [ngValue]="city.id">{{city.name}}</option>
+                                </select>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="locations$ | async as locations">
+                            <label for="location" class="form-label">Location</label>
+                            <div class="mb-2">
+                                <select class="form-select form-select-lg" id="location-id" name="location-id" [(ngModel)]="clientRegisterRequest.locationId" required>
+                                    <option [ngValue]="-1" disabled></option>
+                                    <option *ngFor="let location of locations" [ngValue]="location.id">{{location.streetName + ", " + location.houseNumber + ", " + (location.apartmentNumber ?? "")}}</option>
+                                </select>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion mb-4" id="location-add-new">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="location-add-new-heading">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#location-add-new-collapse" aria-expanded="true" aria-controls="collapseLocation">
+                        Submit a request to add a new one
+                    </button>
+                </h2>
+                <div id="location-add-new-collapse" class="accordion-collapse collapse" aria-labelledby="location-add-new-heading" data-bs-parent="#location-add-new">
+                    <div class="accordion-body">
+                        <form #locationForm="ngForm" (ngSubmit)="onAddNewLocationFormSubmit()">
+                            <div class="mb-3">
+                                <label for="location-new-city" class="form-label">City</label>
+                                <input type="text" class="form-control" id="location-new-city" name="location-new-city" [(ngModel)]="cityInput" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="location-new-street" class="form-label">Street</label>
+                                <input type="text" class="form-control" id="location-new-street" name="location-new-street" [(ngModel)]="streetInput" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="location-new-house-number" class="form-label">House Number</label>
+                                <input type="text" class="form-control" id="houseNumber" name="location-new-house-number" [(ngModel)]="houseNumberInput" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="location-new-apartment-number" class="form-label">Apartment Number</label>
+                                <input type="number" class="form-control" id="location-new-apartment-number" name="location-new-apartment-number" [(ngModel)]="apartmentNumberInput">
+                            </div>
+                            <div class="mb-3">
+                                <label for="location-new-communication-email" class="form-label">Email for communication</label>
+                                <input type="email" class="form-control" id="location-new-communication-email" name="location-new-email" [(ngModel)]="communicationEmailInput">
+                            </div>
+                            <button type="submit" class="btn btn-dark btn-lg w-100">Send request</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-dark btn-lg w-100">Register</button>
+      </form>
+    </div>
+  </div>
+  

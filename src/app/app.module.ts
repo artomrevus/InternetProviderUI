@@ -41,6 +41,14 @@ import { EditTariffComponent } from './features/admin/tariff/edit-tariff/edit-ta
 import { ConnectionRequestListComponent } from './features/admin/connection-request/connection-request-list/connection-request-list.component';
 import { AddConnectionRequestComponent } from './features/admin/connection-request/add-connection-request/add-connection-request.component';
 import { EditConnectionRequestComponent } from './features/admin/connection-request/edit-connection-request/edit-connection-request.component';
+import { ClientAuthOptionsComponent } from './features/client/auth/client-auth-options/client-auth-options.component';
+import { ClientLoginComponent } from './features/client/auth/client-login/client-login.component';
+import { ClientRegisterComponent } from './features/client/auth/client-register/client-register.component';
+import { ProfileComponent } from './features/client/profile/profile.component';
+import { EditProfileComponent } from './features/client/edit-profile/edit-profile.component';
+import { ExploreTariffsComponent } from './features/client/explore-tariffs/explore-tariffs.component';
+import { ClientConnectionRequestsComponent } from './features/client/client-connection-requests/client-connection-requests.component';
+import { NewConnectionRequestComponent } from './features/client/new-connection-request/new-connection-request.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +87,15 @@ import { EditConnectionRequestComponent } from './features/admin/connection-requ
     EditTariffComponent,
     ConnectionRequestListComponent,
     AddConnectionRequestComponent,
-    EditConnectionRequestComponent
+    EditConnectionRequestComponent,
+    ClientAuthOptionsComponent,
+    ClientLoginComponent,
+    ClientRegisterComponent,
+    ProfileComponent,
+    EditProfileComponent,
+    ExploreTariffsComponent,
+    ClientConnectionRequestsComponent,
+    NewConnectionRequestComponent
   ],
   imports: [
     BrowserModule,

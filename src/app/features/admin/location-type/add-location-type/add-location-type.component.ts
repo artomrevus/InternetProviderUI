@@ -12,7 +12,7 @@ import { LocationTypeService } from '../services/location-type.service';
 export class AddLocationTypeComponent implements OnDestroy {
 
   locationType: LocationTypeRequest;
-  private addLocationTypeSubscribtion?: Subscription 
+  private addSubscribtion?: Subscription 
 
   constructor (private locationTypeService: LocationTypeService, private router: Router) {
     this.locationType = {
@@ -26,7 +26,7 @@ export class AddLocationTypeComponent implements OnDestroy {
       return;
     }
 
-    this.addLocationTypeSubscribtion = this.locationTypeService.addLocationType(this.locationType).subscribe({
+    this.addSubscribtion = this.locationTypeService.addLocationType(this.locationType).subscribe({
       next: (response) => {
         this.router.navigateByUrl('admin/location-types');
       },
@@ -37,6 +37,6 @@ export class AddLocationTypeComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.addLocationTypeSubscribtion?.unsubscribe();
+    this.addSubscribtion?.unsubscribe();
   }
 }

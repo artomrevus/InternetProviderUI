@@ -1,10 +1,11 @@
-<div class="container d-flex flex-column align-items-center mt-5">
-    <h1 class="mb-4">Welcome to the website of our Internet provider</h1>
-    <p class="text-muted mb-4">Please select how you want to proceed:</p>
+<div class="container d-flex justify-content-center align-items-center mt-5">
+  <div class="card shadow-lg p-5" style="width: 40rem;">
+    <h1 class="text-center mb-5">Welcome to the website of our Internet provider</h1>
+    <p class="text-center text-muted mb-4">Please select how you want to proceed:</p>
 
-    <div class="d-flex flex-column gap-3 w-50">
-      <a class="btn btn-light btn-lg w-100">Continue as User</a>
-      <a class="btn btn-light btn-lg w-100">Continue as Employee</a>
+    <div class="d-flex flex-column gap-3">
+      <a class="btn btn-light btn-lg w-100" [routerLink]="['client/auth-options/']">Continue as Client</a>
       <a class="btn btn-light btn-lg w-100" [routerLink]="['admin/login/']">Continue as Admin</a>
     </div>
+  </div>
 </div>

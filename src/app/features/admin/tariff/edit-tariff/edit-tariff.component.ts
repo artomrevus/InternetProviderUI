@@ -22,7 +22,7 @@ export class EditTariffComponent implements OnInit, OnDestroy {
   tariffStatuses$?: Observable<TariffStatusResponse[]>;
   locationTypes$?: Observable<LocationTypeResponse[]>;
   private paramsSubscribtion?: Subscription 
-  private updateTariffSubscribtion?: Subscription 
+  private updateSubscribtion?: Subscription 
 
   constructor (
     private route: ActivatedRoute, 
@@ -107,7 +107,7 @@ export class EditTariffComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.updateTariffSubscribtion = this.tariffService.updateTariff(this.id, this.tariffRequest).subscribe({
+    this.updateSubscribtion = this.tariffService.updateTariff(this.id, this.tariffRequest).subscribe({
       next: (response) => {
         this.router.navigateByUrl('admin/tariffs');
       },
@@ -119,6 +119,6 @@ export class EditTariffComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.paramsSubscribtion?.unsubscribe();
-    this.updateTariffSubscribtion?.unsubscribe();
+    this.updateSubscribtion?.unsubscribe();
   }
 }

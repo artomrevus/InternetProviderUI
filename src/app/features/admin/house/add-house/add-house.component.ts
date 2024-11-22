@@ -15,7 +15,7 @@ export class AddHouseComponent implements OnInit, OnDestroy {
 
   house: HouseRequest;
   streets$?: Observable<StreetResponse[]>;
-  private addHouseSubscribtion?: Subscription 
+  private addSubscribtion?: Subscription 
 
   constructor (private houseService: HouseService, private streetService: StreetService, private router: Router) {
     this.house = {
@@ -39,7 +39,7 @@ export class AddHouseComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.addHouseSubscribtion = this.houseService.addHouse(this.house).subscribe({
+    this.addSubscribtion = this.houseService.addHouse(this.house).subscribe({
       next: (response) => {
         this.router.navigateByUrl('admin/houses');
       },
@@ -50,6 +50,6 @@ export class AddHouseComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.addHouseSubscribtion?.unsubscribe();
+    this.addSubscribtion?.unsubscribe();
   }
 }

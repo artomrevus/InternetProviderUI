@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 export class AdminLoginComponent implements OnDestroy {
 
   adminLoginRequest: AdminLoginRequest;
-  private adminLoginSubscribtion?: Subscription 
+  private loginSubscribtion?: Subscription 
 
   constructor(private adminAuthService: AdminAuthService, private router: Router) {
     this.adminLoginRequest = {
@@ -22,19 +22,20 @@ export class AdminLoginComponent implements OnDestroy {
   }
 
   onFormSubmit(): void {
-    this.adminLoginSubscribtion = this.adminAuthService.login(this.adminLoginRequest).subscribe({
+    this.loginSubscribtion = this.adminAuthService.login(this.adminLoginRequest).subscribe({
       next: (response) => {
         this.adminAuthService.saveAdminLoginResponse(response);
-        this.router.navigateByUrl('/admin/client-statuses');
+        this.router.navigateByUrl('/admin/clients');
         console.log("Success.", response);
       },
       error: (error) => {
+        alert("Login error.")
         console.warn(error);
       },
     });
   }
 
   ngOnDestroy(): void {
-    this.adminLoginSubscribtion?.unsubscribe();
+    this.loginSubscribtion?.unsubscribe();
   }
 }
